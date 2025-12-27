@@ -1,0 +1,19 @@
+# --- Config & Secrets (ASLA Yükleme) ---
+config.json
+void_config.json
+*.json
+
+# --- Logs & Data ---
+*.log
+voidtrap.log
+
+# --- Captured Malware (Çok Önemli) ---
+quarantine/
+quarantine/*
+
+# --- Python Cache ---
+__pycache__/
+*.pyc
+
+# --- System ---
+.DS_Store

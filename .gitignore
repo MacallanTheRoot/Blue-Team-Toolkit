@@ -1,0 +1,17 @@
+# Virtual env
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local databases and logs
+*.db
+*.sqlite
+*.log
+fim_alerts.json
+
+# Streamlit and cache
+.streamlit/
+.pytest_cache/
+.ipynb_checkpoints/
