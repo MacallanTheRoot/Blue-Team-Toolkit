@@ -1,4 +1,4 @@
-"""SIEM için merkezi konfigürasyon yönetimi.
+"""ThreatWeave için merkezi konfigürasyon yönetimi.
 DB yolu, API anahtarları, risk eşikleri ve özellik ayarlarını yükler ve saklar.
 """
 from __future__ import annotations

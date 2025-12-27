@@ -1,7 +1,7 @@
 <div align="center">
 
-# 🔵 Silent Watcher SIEM
-### Kurumsal Düzeyde Güvenlik Bilgi ve Olay Yönetimi Sistemi
+# �️ ThreatWeave
+### Kurumsal Düzeyde Güvenlik Bilgi ve Olay Yönetimi Platformu
 
 [![Python 3.13](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -168,8 +168,8 @@
 ### Adım 1: Repository'yi Klonlayın
 
 ```bash
-git clone https://github.com/yourusername/silent-watcher-siem.git
-cd silent-watcher-siem/SIEM
+git clone https://github.com/yourusername/threatweave.git
+cd threatweave/SIEM
 ```
 
 ### Adım 2: Virtual Environment Oluşturun
@@ -228,7 +228,7 @@ streamlit run siem_dashboard.py
 
 ## 📊 Web Dashboard
 
-Silent Watcher SIEM'in web arayüzü 10 ana modülden oluşur:
+ThreatWeave'in web arayüzü 11 ana modülden oluşur:
 python siem_hunter.py monitor --file /var/log/auth.log --type auth
 
 # Özel izleme aralığı (saniye)
@@ -901,7 +901,7 @@ Silent Watcher'ın tespit edilebildiği taktik ve teknikler:
 
 ## 🔄 SOC Workflow
 
-Silent Watcher SIEM, gerçek dünya SOC operasyonlarını destekler:
+ThreatWeave, gerçek dünya SOC operasyonlarını destekler:
 
 ### 📝 Tipik Olay Müdahale Akışı
 
@@ -1071,8 +1071,10 @@ Bu araç **yalnızca yetkili güvenlik testi ve izleme** amacıyla geliştirilmi
 
 <div align="center">
 
-**[⬆ Başa Dön](#-silent-watcher-siem)**
+**[⬆ Başa Dön](#-threatweave)**
 
 Sevgiyle geliştirildi — Blue Team
+
+**ThreatWeave - Tehditleri Dokünü Gibi Bağlayan Platform**
 
 </div>

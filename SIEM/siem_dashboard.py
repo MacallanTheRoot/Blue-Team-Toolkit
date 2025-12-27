@@ -80,7 +80,7 @@ def ensure_demo(df: pd.DataFrame) -> pd.DataFrame:
 st_autorefresh = st.sidebar.checkbox("Canlı yenile (manuel) ☑", value=False)
 
 # Sidebar
-st.sidebar.title("SIEM X PRO")
+st.sidebar.title("🕸️ ThreatWeave")
 menu = st.sidebar.selectbox("Navigasyon", ["Dashboard", "Alert Triage", "Threat Hunting", "Playbooks", "Metrikler", "Tehdit İstihbaratı", "Varlıklar", "Güvenlik Açıkları", "FIM", "Olaylar", "Ayarlar"])
 quick_ip = st.sidebar.text_input("Hızlı IP Engelle", "192.168.1.50")
 if st.sidebar.button("Engelle (Simule)"):
@@ -93,7 +93,7 @@ if global_search:
 
 # Dashboard
 if menu == "Dashboard":
-    st.title("🛰️ Security Operations Center")
+    st.title("�️ ThreatWeave - Tehdit Operasyon Merkezi")
     anomalies_df = anomaly_service.score(df_logs)
     anomaly_count = int(anomalies_df["anomaly"].sum()) if not anomalies_df.empty else 0
 
