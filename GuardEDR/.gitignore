@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# GuardEDR specific
+edr_quarantine/
+edr_quarantine/*
+*.vir
+*.log
+edr_config.json
+guard_alerts.json
+
+# API Keys (NEVER COMMIT)
+credentials.json
+config.json
+vt_api_key.txt
+telegram_token.txt
+
+# OS
+.DS_Store
+Thumbs.db

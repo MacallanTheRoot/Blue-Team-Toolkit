@@ -33,9 +33,9 @@ env/
 *.swo
 *~
 
-# SIEM specific
-siem_logs.db
-siem_config.json
+# ThreatWeaveSIEM specific
+threatweave_logs.db
+threatweave_config.json
 *.log
 attachments/
 fim_report.json

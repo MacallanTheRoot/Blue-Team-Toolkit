@@ -8,8 +8,8 @@ from dataclasses import dataclass, asdict
 
 DEFAULT_CONFIG = {
     "db_type": "sqlite",  # sqlite | postgres
-    "db_path": "siem_logs.db",
-    "postgres_dsn": "postgresql://user:pass@localhost:5432/siem",
+    "db_path": "threatweave_logs.db",
+    "postgres_dsn": "postgresql://user:pass@localhost:5432/threatweave",
     "fim_path": os.getcwd(),
     "fim_enabled": True,
     "fim_watched_dirs": [],
@@ -20,7 +20,7 @@ DEFAULT_CONFIG = {
     "auto_seed_demo": True,
 }
 
-CONFIG_FILE = "siem_config.json"
+CONFIG_FILE = "threatweave_config.json"
 
 @dataclass
 class SIEMConfig:

@@ -1,4 +1,4 @@
-"""Kurumsal seviye SIEM/SOC suite için Streamlit UI."""
+"""ThreatWeave SIEM - Kurumsal seviye SOC suite için Streamlit UI."""
 from __future__ import annotations
 import os
 import json
@@ -416,7 +416,7 @@ elif menu == "Olaylar":
 elif menu == "Ayarlar":
     st.title("⚙️ Sistem Yapılandırması")
     st.json({"db_path": config.db_path, "fim_path": config.fim_path, "risk_threshold": config.risk_threshold, "auto_seed_demo": config.auto_seed_demo})
-    st.caption("İleri seviye ayarlar için siem_config.json dosyasını düzenleyin.")
+    st.caption("İleri seviye ayarlar için threatweave_config.json dosyasını düzenleyin.")
     if st.button("Ingestion kuyruğunu işle"):
         processed = ingestion_service.flush()
         st.success(f"{processed} olay işlendi")
