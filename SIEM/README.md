@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-red.svg)](https://attack.mitre.org/)
 
-**Gelişmiş log analizi, ML tabanlı anomali tespiti ve gerçek zamanlı tehdit avı platformu**
+**Gelişmiş log analizi, ML tabanlı anomali tespiti, proaktif tehdit avı ve SOC operasyon platformu**
 
 [Hızlı Başlangıç](#-hızlı-başlangıç) • [Özellikler](#-özellikler) • [Kurulum](#-kurulum) • [Dashboard](#-web-dashboard) • [Dokümantasyon](#-kullanım-kılavuzu)
 
@@ -22,90 +22,133 @@
 - [Kurulum](#-kurulum)
 - [Hızlı Başlangıç](#-hızlı-başlangıç)
 - [Web Dashboard](#-web-dashboard)
+- [SOC Workflow](#-soc-workflow)
 - [Kullanım Kılavuzu](#-kullanım-kılavuzu)
-- [Tespit Kuralları](#-tespit-kuralları)
 - [Mimari](#️-mimari)
-- [Performans](#-performans)
-- [Yol Haritası](#-yol-haritası)
+- [Katkıda Bulunma](#-katkıda-bulunma)
 
 ---
 
 ## 🎯 Genel Bakış
 
-**Silent Watcher SIEM**, kurumsal güvenlik operasyonları için tasarlanmış, açık kaynaklı bir güvenlik izleme ve olay yönetimi platformudur. Modern SIEM çözümlerinin (Splunk, ELK Stack, Wazuh) en iyi özelliklerini birleştirerek, güvenlik ekiplerine güçlü tehdit tespiti ve olay müdahalesi yetenekleri sunar.
+**Silent Watcher SIEM**, SOC (Security Operations Center) ekipleri için tasarlanmış, modern ve kapsamlı bir güvenlik operasyonu platformudur. Gerçek dünya senaryolarında kullanılabilir tehdit tespiti, olay müdahalesi ve sürekli güvenlik izleme yetenekleri sunar.
 
 ### 🌟 Neden Silent Watcher?
 
+- ✅ **SOC Odaklı**: Gerçek SOC analisti iş akışları için tasarlandı
 - ✅ **Açık Kaynak & Ücretsiz**: Ticari SIEM maliyetleri olmadan kurumsal özellikler
 - ✅ **Kolay Kurulum**: Dakikalar içinde çalışır duruma gelir
-- ✅ **ML Destekli**: Bilinmeyen tehditleri otomatik tespit eder
-- ✅ **Modern Arayüz**: Streamlit tabanlı interaktif web dashboard
-- ✅ **Endüstri Standardı**: MITRE ATT&CK ve Sigma kuralları desteği
-- ✅ **Genişletilebilir**: Özel kurallar ve entegrasyonlar eklemeye hazır
+- ✅ **ML Destekli**: IsolationForest algoritması ile anomali tespiti
+- ✅ **Modern Arayüz**: Streamlit tabanlı dark SOC teması
+- ✅ **Türkçe Destek**: Tamamen Türkçe arayüz ve dokümantasyon
+- ✅ **Genişletilebilir**: Modüler mimari, özel servisler ve kurallar eklemeye hazır
 
 ---
 
 ## 🚀 Özellikler
+<tr>
+<td width="50%">
 
 <table>
 <tr>
 <td width="50%">
 
-### 🔍 Tespit Motoru
-- **Çoklu Format Desteği**
-  - Syslog, Apache/Nginx
-  - Windows Event Logs
-  - Auth logs, JSON
-- **Sigma Kural Motoru**
-  - Topluluk kuralları
-  - Özel kural desteği
+### 🔍 Tehdit Tespiti
 - **ML Anomali Tespiti**
-  - Isolation Forest
-  - Otomatik eğitim
+  - IsolationForest algoritması
+  - Otomatik model eğitimi
+  - Risk skorlaması
+- **Kural Tabanlı Tespit**
+  - Özelleştirilebilir kurallar
+  - Port scan tespiti
+  - Failed login tracking
+- **MITRE ATT&CK Mapping**
+  - Otomatik teknik eşleştirme
+  - Taktik kategorileri
   
 </td>
 <td width="50%">
 
-### 🎯 Tehdit Avı
-- **Proaktif Keşif**
-  - SQL bazlı sorgular
-  - Pattern matching
-- **IOC Çıkarımı**
-  - IP, Domain, Hash
-  - Email, URL tespiti
-- **MITRE ATT&CK**
-  - Otomatik eşleştirme
-  - Taktik haritalama
+### 🎯 SOC Araçları
+- **Alert Triage**
+  - Otomatik önceliklendirme
+  - Triage skoru hesaplama
+  - Akıllı filtreleme
+- **Threat Hunting**
+  - IOC bazlı arama (IP/Hash/Domain)
+  - Şüpheli desen tespiti
+  - Gece aktivitesi analizi
+- **Playbook Yönetimi**
+  - 4 hazır olay müdahale playbook'u
+  - Malware, Data Exfiltration, Brute Force, Ransomware
 
 </td>
 </tr>
 <tr>
 <td>
 
-### 📊 Web Dashboard
-- **Gerçek Zamanlı İzleme**
+### 📊 Görselleştirme
+- **Gerçek Zamanlı Dashboard**
   - Canlı metrikler
-  - İnteraktif grafikler
-- **Log Yönetimi**
-  - Gelişmiş filtreleme
-  - Arama ve analiz
-- **Raporlama**
-  - Otomatik rapor oluşturma
-  - Görselleştirme
+  - İnteraktif grafikler (Plotly)
+  - Dark SOC teması
+- **Analitik**
+  - Severity heatmap
+  - Risk trend analizi
+  - IP itibar skorlaması
+- **KPI Metrikleri**
+  - Toplam/kritik olay sayısı
+  - Ortalama risk skoru
+  - En aktif kaynaklar
 
 </td>
 <td>
 
-### 🛡️ Güvenlik
-- **Alert Sistemi**
-  - Akıllı korelasyon
-  - Önceliklendirme
+### 🛡️ Varlık & Güvenlik
+- **Varlık Envanteri**
+  - Otomatik keşif (simulated)
+  - Hostname, IP, OS tracking
+- **Güvenlik Açığı Tarama**
+  - Dahili zafiyet tarayıcı
+  - CVE tracking
+- **Dosya Bütünlük İzleme (FIM)**
+  - Çoklu klasör izleme
+  - Baseline karşılaştırma
+  - Değişiklik alertleri
+
+</td>
+</tr>
+<tr>
+<td>
+
+### 🚨 Olay Yönetimi
+- **Incident Response**
+  - Olay oluşturma ve takip
+  - Not sistemi (analyst notes)
+  - Dosya ekleri (attachments)
+- **Tehdit İstihbaratı**
+  - IP itibar sorgulama
+  - IOC havuzları
+  - Tehdit beslemeleri
 - **Korelasyon Motoru**
-  - Zaman tabanlı analiz
-  - Eşik tespiti
-- **Olay Yönetimi**
-  - Zaman çizelgesi
-  - İz sürme
+  - Port scan tespiti
+  - Failed login korelasyonu
+  - Zaman bazlı analiz
+
+</td>
+<td>
+
+### ⚙️ Mimari & Entegrasyon
+- **Modüler Yapı**
+  - core/, services/, ui/, utils/
+  - Kolay genişletme
+- **Veritabanı**
+  - SQLite (default)
+  - PostgreSQL desteği
+- **API & Forwarder**
+  - REST API endpoint'leri
+  - Log forwarding (Syslog, HTTP)
+  - Ingestion queue
 
 </td>
 </tr>
@@ -118,15 +161,15 @@
 ### Sistem Gereksinimleri
 
 - **İşletim Sistemi**: Linux, macOS, Windows
-- **Python**: 3.13+ (önerilen)
+- **Python**: 3.13+ (önerilen 3.11+)
 - **RAM**: Minimum 2GB, önerilen 4GB+
 - **Disk**: 1GB+ (log hacmine bağlı)
 
 ### Adım 1: Repository'yi Klonlayın
 
 ```bash
-git clone https://github.com/yourusername/silent_watcher.git
-cd silent_watcher
+git clone https://github.com/yourusername/silent-watcher-siem.git
+cd silent-watcher-siem/SIEM
 ```
 
 ### Adım 2: Virtual Environment Oluşturun
@@ -154,9 +197,8 @@ pip install -r requirements.txt
 |-------|----------|----------|
 | **streamlit** | ≥1.28.0 | Web dashboard |
 | **pandas** | ≥2.1.0 | Veri analizi |
-| **scikit-learn** | ≥1.3.0 | ML modelleri |
-| **plotly** | ≥5.17.0 | Görselleştirme |
-| **pyyaml** | ≥6.0.1 | Sigma kuralları |
+| **scikit-learn** | ≥1.3.0 | ML anomali tespiti |
+| **plotly** | ≥5.17.0 | İnteraktif görselleştirme |
 | **numpy** | ≥1.24.0 | Numerical computing |
 
 ---
@@ -174,32 +216,19 @@ streamlit run siem_dashboard.py
 # Tarayıcıda otomatik açılacak: http://localhost:8501
 ```
 
-**veya**
+### 📋 İlk Kullanım
 
-```bash
-# Hızlı başlatma scripti
-./start_dashboard.sh
-```
+1. **Dashboard** sayfasında otomatik demo log'lar yüklenecek
+2. **FIM** sayfasından dosya izleme klasörleri ekleyin
+3. **Alert Triage** ile öncelikli alertleri görüntüleyin
+4. **Threat Hunting** ile IOC araması yapın
+5. **Playbooks** ile olay müdahale senaryolarını inceleyin
 
-### 🖥️ Komut Satırı Kullanımı
+---
 
-#### 1️⃣ Log Verisi Yükleme
+## 📊 Web Dashboard
 
-```bash
-# Otomatik format tespiti
-python siem_hunter.py ingest --file /var/log/auth.log
-
-# Format belirtme
-python siem_hunter.py ingest --file /var/log/apache2/access.log --type apache
-
-# Demo verisi ile test
-python siem_hunter.py ingest --file demo_logs.txt
-```
-
-#### 2️⃣ Gerçek Zamanlı İzleme
-
-```bash
-# Log dosyasını canlı izle (tail -f benzeri)
+Silent Watcher SIEM'in web arayüzü 10 ana modülden oluşur:
 python siem_hunter.py monitor --file /var/log/auth.log --type auth
 
 # Özel izleme aralığı (saniye)
@@ -868,7 +897,62 @@ Silent Watcher'ın tespit edilebildiği taktik ve teknikler:
 ### 🟡 Persistence (T1078)
 - Valid Accounts
 
-### 🔵 Privilege Escalation (T1548)
+---
+
+## 🔄 SOC Workflow
+
+Silent Watcher SIEM, gerçek dünya SOC operasyonlarını destekler:
+
+### 📝 Tipik Olay Müdahale Akışı
+
+1. **Log Ingestion** → Loglar veritabanına alınır (ingestion service)
+2. **Correlation** → Port scan, failed login gibi desenler tespit edilir
+3. **Alert Triage** → Alertler otomatik önceliklendirilir (triage_score)
+4. **Threat Hunting** → Analist IOC araması yapar, şüpheli desenleri inceler
+5. **Playbook Execution** → İlgili olay müdahale playbook'u açılır
+6. **Incident Creation** → Olay kaydı oluşturulur, notlar ve ekler eklenir
+7. **Investigation** → Detaylı analiz, MITRE ATT&CK mapping
+8. **Resolution** → Olay kapatılır, KPI metrikleri güncellenir
+
+### 🎯 Örnek Senaryo: Şüpheli Port Scan
+
+**1. Tespit**
+```
+Correlation Engine: 10.0.1.50 IP'sinden 5 dakikada 100+ farklı porta bağlantı denemesi
+```
+
+**2. Triage**
+```
+Alert Triage Service: Risk skoru 85/100, öncelik HIGH
+```
+
+**3. Hunting**
+```
+Analyst: Threat Hunting > IOC Arama > 10.0.1.50
+Sonuç: IP temiz IOC listelerinde yok, ama internal subnet'te
+```
+
+**4. Playbook**
+```
+Playbook: "Network Scan Response"
+- Kaynak IP'yi izole et
+- Endpoint'i karantinaya al
+- Network trafiğini logla
+```
+
+**5. Incident**
+```
+Olay #42 oluşturuldu
+Severity: HIGH
+Tags: port-scan, internal-threat
+Not: "Internal workstation compromised, possible lateral movement"
+```
+
+---
+
+## 🧩 Mimari
+
+### Modüler Yapı
 - Abuse Elevation Control Mechanism
 
 ### 🟣 Credential Access (T1110)

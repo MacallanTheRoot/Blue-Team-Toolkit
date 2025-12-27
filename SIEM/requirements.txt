@@ -1,19 +1,12 @@
-# SIEM Log Analiz & Tehdit Avcısı Gereksinimleri
-
-# Temel bağımlılıklar
-pyyaml>=6.0.1
-Flask>=3.0.0
-
-# Makine Öğrenmesi (opsiyonel ama önerilen)
-scikit-learn>=1.3.0
-numpy>=1.24.0
-joblib>=1.3.0  # Model kaydetme için
-
-# Web Dashboard
-streamlit>=1.28.0
-plotly>=5.17.0
-pandas>=2.1.0
-
-# Ek yardımcı araçlar (opsiyonel)
-colorama>=0.4.6  # Renkli konsol çıktısı için
-requests>=2.31.0  # IOC enrichment için (gelecek özellik)
+streamlit
+pandas
+argparse
+psutil
+plotly
+watchdog
+requests
+pyyaml
+fastapi
+uvicorn
+psycopg[binary]
+scikit-learn

@@ -1,0 +1,9 @@
+rules:
+  - name: Failed Login Burst
+    field: msg
+    contains: failed login
+    severity: high
+  - name: Port Scan
+    field: msg
+    contains: port scan
+    severity: medium
