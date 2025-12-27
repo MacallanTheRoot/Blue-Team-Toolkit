@@ -63,10 +63,6 @@ Active Directory ortamları için güvenlik denetim ve sıkılaştırma aracıd�
 ├── GuardEDR         # Uç Nokta Savunması (GuardEDR.py) 
 ├── Voidtrap         # Honeypot & Deception (Voidtrap.py) 
 └── ThreatWeaveSIEM  # Merkezi Log Analizi & SOC Platform
-    ├── core/        # DB ve Konfigürasyon yönetimi 
-    ├── services/    # ML, Korelasyon ve FIM servisleri 
-    ├── rules/       # Tespit kuralları (rules.yaml) 
-    └── ui/          # Dashboard bileşenleri ve temalar
 ```
 
 ---
