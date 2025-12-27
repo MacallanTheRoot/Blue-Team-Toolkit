@@ -1,72 +1,102 @@
-# Silent Watcher + AutoSec FIM (Entegre Çözüm)
+# 🛡️ Blue Team Cyber Defense Toolkit
 
-Profesyonel dosya bütünlüğü izlemesi (FIM) + SIEM alarmları. AutoSec File Integrity Monitor, Silent Watcher SIEM'e gerçek zamanlı alarm gönderir ve Streamlit dashboard'dan yönetilir.
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Security](https://img.shields.io/badge/Security-Blue%20Team-blue?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-lightgrey?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Educational-green?style=for-the-badge)
 
-## Dizin Yapısı
+## 📌 Proje Hakkında
+Bu depo, **Proaktif Savunma**, **Olay Müdahale (Incident Response)** ve **SOC Operasyonları** üzerine geliştirdiğim araçların ve sistemlerin kapsamlı bir koleksiyonudur.
+
+Buradaki projeler, basit güvenlik scriptleri olmanın ötesinde; **Uç Nokta Koruması (EDR)**, **SIEM Mimarisi**, **Aldatma Teknikleri (Deception)** ve **Kimlik Güvenliği Denetimi** üzerine derinlemesine teknik yetkinlikleri sergilemek amacıyla tasarlanmıştır.
+
+Bu repository; toplam 21 dizin ve 65 dosyadan oluşan, kurumsal savunma katmanlarını (Defense-in-Depth) simüle eden bir güvenlik ekosistemidir.
+
+---
+
+## 📂 Projeler ve Modüller
+
+### 1. 🔍 ThreatWeaveSIEM
+Merkezi güvenlik izleme ve olay yönetimi (SIEM) platformudur.
+* **📂 Konum:** `/ThreatWeaveSIEM`
+* **Özellikler:**
+    * **Teknik Mimari:** `core` dizininde veritabanı ve migrasyon yönetimi, `services` altında ise ML tabanlı anomali tespiti ve korelasyon motoru yer alır.
+    * **Kural Motoru:** `rules.yaml` üzerinden özelleştirilebilir tespit kuralları ve `threatweave_dashboard.py` ile interaktif SOC arayüzü.
+    * **Gelişmiş FIM:** Dosya bütünlük izleme (File Integrity Monitor) modülü ile kritik dosyaları anlık takip eder.
+    * **API Entegrasyonu:** `api/ingest.py` ile log toplama ve merkezi veri entegrasyon katmanı.
+    * **Analytics & ML:** İzolasyon ormanı (Isolation Forest) algoritması ile anomali tespiti ve korelasyon analizi.
+
+### 2. 🛡️ GuardEDR
+Davranış tabanlı uç nokta tespit ve yanıt (EDR) sistemidir.
+* **📂 Konum:** `/GuardEDR`
+* **Özellikler:**
+    * **Aktif Müdahale:** Şüpheli süreçleri tespit eder, sonlandırır ve ilgili dosyaları `edr_quarantine` dizinine taşır.
+    * **Malware Analysis:** VirusTotal entegrasyonu ile dosya itibar analizi ve Shannon Entropy hesaplama modülleri.
+    * **Behavioral Detection:** Süreç davranışlarını izleyerek zararlı aktiviteleri gerçek zamanlı tespit eder.
+    * **Quarantine System:** Şüpheli dosyaları güvenli bir ortamda izole ederek analiz için saklar.
+
+### 3. 🕷️ Voidtrap
+Gelişmiş aldatma (deception) ve tehdit istihbaratı toplama sistemidir.
+* **📂 Konum:** `/Voidtrap`
+* **Özellikler:**
+    * **Honeypot Framework:** Sahte servisler ve tuzaklar ile saldırganları kandırır ve davranışlarını kaydeder.
+    * **Malware Collection:** Saldırganların indirmeye çalıştığı dosyaları yakalar ve `quarantine` klasöründe analiz için saklar (Örn: `eicar.com.txt`).
+    * **Real-time Alerting:** Gerçek zamanlı saldırı verilerini asenkron bir kuyruk yapısıyla Telegram/Email üzerinden iletir.
+    * **Threat Intelligence:** Saldırgan IP'leri, kullanılan teknikler ve zararlı yazılım örneklerini toplar.
+
+### 4. 🔑 ADGuard
+Active Directory ortamları için güvenlik denetim ve sıkılaştırma aracıdır.
+* **📂 Konum:** `/ADGuard`
+* **Özellikler:**
+    * **Zafiyet Analizi:** Kerberoasting, AS-REP Roasting ve riskli delegasyon yapılandırmalarını (Unconstrained Delegation) LDAP üzerinden analiz eder.
+    * **LDAP Queries:** Active Directory'ye karşı güvenlik odaklı sorgular çalıştırarak zayıf noktaları tespit eder.
+    * **Actionable Reports:** Sistem yöneticilerine saldırı yüzeyini daraltmak için uygulanabilir öneriler sunar.
+    * **Configuration Audit:** Domain controller yapılandırmalarını, güvenlik politikalarını ve kullanıcı hesaplarını denetler.
+
+---
+
+## 🏗️ Proje Yapısı
+
 ```
-SIEM/
-  ├── siem_dashboard.py         # Ana dashboard (FIM yönetimi dahil)
-  ├── siem_api.py              # SIEM ingest API (webhook)
-  ├── siem_hunter.py           # Log analiz motoru
-  ├── FileIntegrityMonitor/    # FIM ajanı
-  │   ├── autosec_fim.py      # FIM çekirdek
-  │   ├── testdata/           # Test dosyaları
-  │   └── siem_listener.py    # Opsiyonel dummy SIEM
-  ├── siem_logs.db            # SIEM veritabanı
-  └── requirements.txt
+.
+├── ADGuard          # AD Güvenlik Denetimi (adguard.py) 
+├── GuardEDR         # Uç Nokta Savunması (GuardEDR.py) 
+├── Voidtrap         # Honeypot & Deception (Voidtrap.py) 
+└── ThreatWeaveSIEM  # Merkezi Log Analizi & SOC Platform
+    ├── core/        # DB ve Konfigürasyon yönetimi 
+    ├── services/    # ML, Korelasyon ve FIM servisleri 
+    ├── rules/       # Tespit kuralları (rules.yaml) 
+    └── ui/          # Dashboard bileşenleri ve temalar
 ```
 
-## Kurulum
+---
 
-```bash
-cd /home/macallan/Downloads/projects/macallan/blueteam
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r SIEM/requirements.txt
-```
+## 🛠️ Teknik Yetkinlikler (Tech Stack)
 
-## Çalıştırma (3 Terminal)
+Bu projelerin geliştirilmesinde aşağıdaki teknolojiler ve kütüphaneler kullanılmıştır:
 
-### Terminal 1: SIEM Ingest API
-```bash
-cd SIEM
-python siem_api.py
-# Dinler: http://127.0.0.1:5000/webhook
-```
+| **Kategori**        | **Teknolojiler**                                                        |
+| ------------------- | ----------------------------------------------------------------------- |
+| **Diller**          | Python 3.11+, Bash, HTML/CSS (UI)                                       |
+| **Analiz & ML**     | `scikit-learn` (IsolationForest), `pandas`, `numpy`, `Shannon Entropy` |
+| **Sistem & EDR**    | `psutil`, `watchdog` (FIM), `winreg`, Windows/Linux API                 |
+| **Web & SOC UI**    | `Streamlit`, `Flask` (REST API), `Plotly`, `Chart.js`                   |
+| **Network & Intel** | `ldap3` (AD), `socket`, `VirusTotal v3 API`, `Telegram Bot API`         |
 
-### Terminal 2: Dashboard (FIM dahil)
-```bash
-cd SIEM
-streamlit run siem_dashboard.py
-# http://localhost:8501 otomatik açılır
-# Sekmeler → "🛡️ File Integrity Monitor" FIM başlatabilirsiniz
-```
+---
 
-### Terminal 3: FIM Başlat (Dashboard'tan VEYA manuel)
-**Dashboard üzerinden:**
-- Sekmeler → "🛡️ File Integrity Monitor"
-- "▶️ FIM Başlat" butonuna tıkla
 
-**Veya Manuel:**
-```bash
-cd SIEM/FileIntegrityMonitor
-python autosec_fim.py -p ./testdata -s http://127.0.0.1:5000/webhook
-```
+## ⚠️ Yasal Uyarı (Disclaimer)
 
-## Özellikler
+> **Bu depo sadece EĞİTİM, ARAŞTIRMA ve YETKİLENDİRİLMİŞ GÜVENLİK TESTLERİ (Red Teaming) amacıyla oluşturulmuştur.**
 
-✅ **FIM (File Integrity Monitor)**
-- Gerçek zamanlı dosya izleme
-- SHA256 hash tabanlı tespit
-- Excludable extensions
-- SIEM webhook entegrasyonu
+Burada bulunan araçların izinsiz sistemlerde kullanılması, veri şifrelenmesi veya ağ trafiğinin dinlenmesi suç teşkil eder. Geliştirici (**MacallanTheRoot**), bu yazılımların kötüye kullanımından doğacak yasal ve maddi sonuçlardan sorumlu değildir.
 
-✅ **Dashboard İntegrasyonu**
-- FIM başlatma/durdurma
-- Live log görüntüleme
-- SIEM DB sorgusu
-- Multi-database hızlı seçim
+Bu projeler, savunma ekiplerinin (Blue Team) saldırı vektörlerini anlaması ve tespit mekanizmaları geliştirmesi için bir kaynak niteliğindedir.
 
-## Git'e Hazır
-- `.gitignore` oluşturuldu
-- Projeyi push etmeye hazırsınız!
+---
+
+### 📬 İletişim & Profil
+**Developer:** MacallanTheRoot
+*Siber Güvenlik Araştırmacısı & Yazılım Geliştirici*
+

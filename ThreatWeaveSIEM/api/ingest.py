@@ -5,8 +5,8 @@ from pydantic import BaseModel
 import sqlite3
 from datetime import datetime
 
-app = FastAPI(title="SIEM Ingestion API")
-DB_PATH = "siem_logs.db"
+app = FastAPI(title="ThreatWeave SIEM Ingestion API")
+DB_PATH = "threatweave_logs.db"
 
 class LogIn(BaseModel):
     timestamp: str | None = None

@@ -1,0 +1,21 @@
+### 2. requirements.txt Dosyası
+
+Projenin hatasız çalışması için gerekli kütüphanelerin listesi ve sürüm bilgileri. Bu dosyayı projenin ana dizinine kaydet.
+
+```text
+# GuardEDR Bağımlılık Listesi
+
+# Sistem ve Süreç Yönetimi
+psutil==5.9.5
+
+# Dosya Sistemi İzleme (Ransomware Koruması)
+watchdog==3.0.0
+
+# API ve Ağ İletişimi (Telegram & VirusTotal)
+requests==2.31.0
+
+# Terminal Görselliği
+colorama==0.4.6
+
+# Tablo Görselleştirme (Opsiyonel)
+prettytable==3.9.0

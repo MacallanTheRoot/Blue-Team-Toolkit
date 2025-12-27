@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SIEM Benzeri Log Analiz & Tehdit Avcısı
+ThreatWeave SIEM - Log Analiz & Tehdit Avcısı
 Kurumsal Düzeyde Güvenlik Bilgi ve Olay Yönetimi Sistemi
 
 Özellikler:
@@ -618,10 +618,10 @@ class AlertManager:
         print(f"{color}{'='*80}{Colors.END}\n")
 
 
-class SIEMDatabase:
+class ThreatWeaveDatabase:
     """Log depolama için SQLite veritabanı"""
     
-    def __init__(self, db_path: str = 'siem_logs.db'):
+    def __init__(self, db_path: str = 'threatweave_logs.db'):
         self.db_path = db_path
         self.conn = None
         self.init_db()
@@ -719,15 +719,15 @@ class SIEMDatabase:
             self.conn.close()
 
 
-class SIEMEngine:
-    """Tüm bileşenleri koordine eden ana SIEM motoru"""
+class ThreatWeaveEngine:
+    """Tüm bileşenleri koordine eden ana ThreatWeave SIEM motoru"""
     
-    def __init__(self, db_path: str = 'siem_logs.db', sigma_rules_dir: Optional[str] = None):
+    def __init__(self, db_path: str = 'threatweave_logs.db', sigma_rules_dir: Optional[str] = None):
         self.parser = LogParser()
         self.sigma_engine = SigmaRuleEngine(sigma_rules_dir)
         self.anomaly_detector = AnomalyDetector()
         self.alert_manager = AlertManager()
-        self.db = SIEMDatabase(db_path)
+        self.db = ThreatWeaveDatabase(db_path)
         self.threat_hunter = ThreatHunter(db_path)
         self.threat_hunter.connect()
         
@@ -911,7 +911,7 @@ class SIEMEngine:
         alerts = self.alert_manager.get_alerts()
         
         print(f"\n{Colors.HEADER}{'='*80}")
-        print(f"📊 SIEM SECURITY REPORT")
+        print(f"📊 THREATWEAVE SIEM SECURITY REPORT")
         print(f"{'='*80}{Colors.END}\n")
         
         print(f"{Colors.BOLD}Database Statistics:{Colors.END}")
@@ -981,7 +981,7 @@ class SIEMEngine:
 def main():
     """Ana CLI arayüzü"""
     parser = argparse.ArgumentParser(
-        description='SIEM-like Log Analyzer & Threat Hunter',
+        description='ThreatWeave SIEM - Log Analyzer & Threat Hunter',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
@@ -1008,46 +1008,46 @@ Examples:
     parser.add_argument('command', choices=['ingest', 'monitor', 'hunt', 'train', 'report', 'alerts'], help='Çalıştırılacak komut')
     parser.add_argument('--file', help='Log dosyası yolu')
     parser.add_argument('--type', default='auto', choices=['auto', 'syslog', 'apache', 'nginx', 'auth', 'windows'], help='Log tipi (varsayılan: otomatik tespit)')
-    parser.add_argument('--db', default='siem_logs.db', help='Veritabanı dosya yolu')
+    parser.add_argument('--db', default='threatweave_logs.db', help='Veritabanı dosya yolu')
     parser.add_argument('--sigma-rules', help='Sigma kuralları dizin yolu')
     parser.add_argument('--severity', choices=['critical', 'high', 'medium', 'info'], help='Alertleri önem seviyesine göre filtrele')
     parser.add_argument('--interval', type=float, default=1.0, help='İzleme aralığı (saniye)')
 
     args = parser.parse_args()
 
-    siem = SIEMEngine(db_path=args.db, sigma_rules_dir=args.sigma_rules)
+    engine = ThreatWeaveEngine(db_path=args.db, sigma_rules_dir=args.sigma_rules)
 
     try:
         if args.command == 'ingest':
             if not args.file:
                 print("[❌] --file parametresi gerekli")
                 return 1
-            siem.ingest_file(args.file, args.type)
-            siem.generate_report()
+            engine.ingest_file(args.file, args.type)
+            engine.generate_report()
 
         elif args.command == 'monitor':
             if not args.file:
                 print("[❌] --file parametresi gerekli")
                 return 1
-            siem.monitor_realtime(args.file, args.type, args.interval)
+            engine.monitor_realtime(args.file, args.type, args.interval)
 
         elif args.command == 'hunt':
-            siem.hunt_threats()
+            engine.hunt_threats()
 
         elif args.command == 'train':
-            siem.train_anomaly_model(args.file)
+            engine.train_anomaly_model(args.file)
 
         elif args.command == 'report':
-            siem.generate_report()
+            engine.generate_report()
 
         elif args.command == 'alerts':
-            alerts = siem.alert_manager.get_alerts(severity=args.severity)
+            alerts = engine.alert_manager.get_alerts(severity=args.severity)
             print(f"\n[*] {len(alerts)} alert listeleniyor\n")
             for alert in alerts[:50]:
-                siem.alert_manager.print_alert(alert)
+                engine.alert_manager.print_alert(alert)
 
     finally:
-        siem.close()
+        engine.close()
 
     return 0
 
